@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title></title>
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link href="/packages/antd-3.19.8/antd.min.css" rel="stylesheet">
+	<style>
+	body{margin:0;padding:0;} .hidden{display:none}
+	html,body{width: 100%; height: 100%;}
+	.shineyue-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+		background-color: #303133;
+    z-index: 99999;
+	}
+	.shineyue-loading-main {
+		user-select: none;
+		width: 100%;
+		flex-grow: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	.shineyue-loading-main .shineyue-loading-img {
+		height: 32px;
+		width: 32px;
+		margin-bottom: 20px;
+	}
+	.shineyue-loading-main .shineyue-loading-title {
+		color: #FFF;
+		font-size: 14px;
+		margin-bottom: 10px;
+	}
+	.shineyue-loading-main .shineyue-loading-sub-title {
+		color: #ABABAB;
+		font-size: 12px;
+	}
+	.shineyue-loading-footer {
+		width: 100%;
+		flex-grow: 0;
+		text-align: center;
+		padding: 1em 0;
+	}
+	.shineyue-loading-footer a{
+		font-size: 12px;
+		color: #ABABAB;
+		text-decoration: none;
+	}
+	</style>
+</head>
+<body>
+	<div class="shineyue-loading" id="shineyue-loading">
+		<div class="shineyue-loading-main">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
+				<path opacity=".25" d="M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 4 A12 12 0 0 1 16 28 A12 12 0 0 1 16 4"/>
+				<path d="M16 0 A16 16 0 0 1 32 16 L28 16 A12 12 0 0 0 16 4z">
+					<animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="0.8s" repeatCount="indefinite" />
+				</path>
+			</svg>
+			<div class="shineyue-loading-title">正在加载资源</div>
+			<div class="shineyue-loading-sub-title">初次加载资源可能需要较多时间 请耐心等待</div>
+		</div>
+		<div class="shineyue-loading-footer">
+			<a href="https://www.shineyue.com/" target="_blank">Copyright © 2019 神玥软件</a>
+		</div>
+	</div>
+	<div id='root'></div>
+	<script src="/babel.js"></script>
+	<script src="/packages/react-16.8.6/react.production.min.js"></script>
+	<script src="/packages/react-16.8.6/react-dom.production.min.js"></script>
+	<script src="/packages/react-router-dom-5.0.0/react-router-dom.min.js"></script>
+	<script src="/packages/lodash-4.17.0/lodash.core.min.js"></script>
+	<script src="/packages/mobx-4.12.0/mobx.umd.min.js"></script>
+	<script src="/packages/mobx-react-5.1.2/index.min.js"></script>
+	<script src="/packages/moment-2.19.1/moment.min.js"></script>
+	<!-- <script src="/packages/moment-2.19.1/moment-with-locales.min.js"></script> -->
+	<script src="/packages/antd-3.19.8/antd.min.js"></script>
+	<script src="/packages/jquery-3.4.1/jquery.min.js"></script>
+	<script src="/main.js"></script>
+</body>
+</html>

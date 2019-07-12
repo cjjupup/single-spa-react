@@ -1,0 +1,8 @@
+{
+    "name": "baseModule",
+    "main": "/baseModule/main.js",
+    "prefix": "/baseModule/",
+    "store": "/baseModule/store.js",
+    "base": true,
+    "path": "/baseModule"
+  }

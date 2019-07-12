@@ -1,0 +1,7 @@
+{
+  "name": "subModuleTest1",
+  "main": "/subModuleTest1/main.js",
+  "prefix": "/subModuleTest1/",
+  "store": "/subModuleTest1/store.js",
+  "path": "/subModuleTest1"
+}
