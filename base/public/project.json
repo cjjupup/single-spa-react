@@ -4,5 +4,8 @@
     "prefix": "/baseModule/",
     "store": "/baseModule/store.js",
     "base": true,
-    "path": "/baseModule"
+    "path": "/baseModule",
+    "moduleInfo": {
+      "name": "主模块"
+    }
   }

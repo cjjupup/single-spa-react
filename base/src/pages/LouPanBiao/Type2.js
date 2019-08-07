@@ -1,25 +1,26 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { Divider, Button, Table, Radio } from 'antd'
-import { lpxxList } from './mockData'
+import { object } from 'prop-types'
+import { lpxxList, testlpxxList } from './mockData'
 
 // @inject('rootStore')
 @observer
 export default class RolePage extends Component {
   state= {
     columns: [],
-    dataSource: [],
+    dataSource: []
   }
   componentDidMount() {
     this.handleData()
   }
   handleData = () => {
     // 请求 lpxxList
-    this.initColumns(lpxxList)
-    this.initDataSource(lpxxList)
+    this.initColumns(testlpxxList)
+    this.initDataSource(testlpxxList)
   }
   // 初始化表头
-  initColumns = lpxxList => {
+  initColumns = testlpxxList => {
     const { chooseThisOne } = this
     let columns = [{
       title: '1栋',
@@ -35,20 +36,20 @@ export default class RolePage extends Component {
     let active = {
       background: '#1890ff'
     }
-    let dyLen = lpxxList.length
+    let dyLen = testlpxxList.length
     for (let i = 0; i < dyLen; i += 1) {
       let col = {}
-      col.title = lpxxList[i].dy
+      col.title = testlpxxList[i].dy
       col.children = []
-      let huLen = lpxxList[i].ceng[0].hu.length
+      let huLen = testlpxxList[i].ceng[0].hu.length
       for (let j = 0; j < huLen; j += 1) {
         let huInfo = {
           title: j + 1,
           dataIndex: `h${i + 1}_${j}`,
           key: `h${i + 1}_${j}`,
           width: 200,
-          render: (obj, record) => {
-            return (
+          render: (obj, record, index) => {
+            const button = (
               <Button
                 type={record[`hu${i + 1}_${j}`].active ? 'primary' : ''}
                 onClick={() => {
@@ -57,39 +58,81 @@ export default class RolePage extends Component {
               >
                 {record[`hu${i + 1}_${j}`].fjh}
               </Button>
-              // <span
-              //   style={record[`hu${i + 1}_${j}`].active ? active : {}}
-              //   onClick={chooseThisOne}
-              // >
-              //   {record[`hu${i + 1}_${j}`].fjh}
-              // </span>
             )
+            const data = {
+              children: button,
+              props: {
+                colSpan: record[`hu${i + 1}_${j}`].colSpan,
+                rowSpan: record[`hu${i + 1}_${j}`].rowSpan
+              }
+            }
+            return data
           }
         }
         col.children.push(huInfo)
       }
       columns.push(col)
     }
+    console.log('表头数据结构： ', columns)
     this.setState({ columns })
   }
   // 初始化dataSource
-  initDataSource = lpxxList => {
+  initDataSource = testlpxxList => {
     let dataSource = []
-    let cengLen = lpxxList[0].ceng.length
+    let rowlist = []
+    let collist = []
+    let cengLen = testlpxxList[0].ceng.length
     for (let i = 0; i < cengLen; i += 1) {
       let cengData = {}
       cengData.ch = `第${cengLen - i}层`
-      let dyLen = lpxxList.length
+      let dyLen = testlpxxList.length
       for (let z = 0; z < dyLen; z += 1) {
-        let huLen = lpxxList[z].ceng[i].hu.length
+        let huLen = testlpxxList[z].ceng[i].hu.length
         for (let j = 0; j < huLen; j += 1) {
-          lpxxList[z].ceng[i].hu[j].active = false
-          cengData[`hu${z + 1}_${j}`] = lpxxList[z].ceng[i].hu[j]
+          let huInfo = testlpxxList[z].ceng[i].hu[j]
+          huInfo.active = false
+          cengData[`hu${z + 1}_${j}`] = huInfo
+          // 纵向合并
+          if (huInfo.rowSpan && huInfo.rowSpan !== 1) {
+            rowlist.push({
+              index: i,
+              key: `hu${z + 1}_${j}`,
+              rowSpan: huInfo.rowSpan,
+              colSpan: huInfo.colSpan
+            })
+          }
+          // 横向合并
+          if (huInfo.colSpan && huInfo.colSpan !== 1) {
+            collist.push({
+              index: i,
+              key: `hu${z + 1}_${j}`,
+              rowSpan: huInfo.rowSpan,
+              colSpan: huInfo.colSpan
+            })
+          }
         }
       }
       dataSource.push(cengData)
     }
-    console.log(dataSource)
+    console.log('需要纵向合并变更的数据', rowlist)
+    rowlist.map(item => {
+      let len = item.rowSpan - 1
+      dataSource[item.index - len][item.key] = { ...dataSource[item.index][item.key] }
+      dataSource[item.index][item.key].rowSpan = 0
+      for (let i = len - 1; i > 0; i -= 1) {
+        dataSource[item.index - i][item.key].rowSpan = 0
+      }
+    })
+    console.log('需要横向合并变更的数据', collist)
+    collist.map(item => {
+      let len = item.colSpan - 1
+      let keyName = item.key.split('_')[0]
+      let keyIndex = item.key.split('_')[1]
+      for (let i = len; i > 0; i -= 1) {
+        dataSource[item.index][`${keyName}_${keyIndex - 0 + i}`].colSpan = 0
+      }
+    })
+    console.log('数据结构: ', dataSource)
     this.setState({ dataSource })
   }
   chooseThisOne = objInfo => {

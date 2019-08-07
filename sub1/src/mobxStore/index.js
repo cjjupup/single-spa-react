@@ -1,11 +1,13 @@
 
 import cacheRouter from './cacheRouter'
-import controlStore from './controlStore'
+import localeStore from './localeStore'
 
 class RootStore {
   constructor () {
+    // 路由缓存控制
     this.cacheRouter = cacheRouter
-    this.controlStore = controlStore
+    // 国际化控制
+    this.localeStore = localeStore
   }
 }
 

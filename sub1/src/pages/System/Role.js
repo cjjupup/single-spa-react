@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Input, Button, Divider } from 'antd'
 import { observer, inject } from 'mobx-react'
 
-@inject('globalStore')
 @observer
 export default class RolePage extends Component {
   closeJumpFunc = () => {
@@ -34,7 +33,6 @@ export default class RolePage extends Component {
     })
   }
   render() {
-    // const UserPage = this.props.globalStore.common.UserPage
     return (
       <div className='role-page'>
         子系统 角色管理页面

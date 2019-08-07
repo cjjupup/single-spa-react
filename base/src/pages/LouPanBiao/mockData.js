@@ -58,32 +58,40 @@ export const lpxxList = [
       {
         sjc: 4,
         ch: '四层',
-        // hu: [
-        //   {
-        //     fjh: '1-0401',
-        //     fwxz: 0,
-        //     fwxzmc: '市场化商品房',
-        //     type: 3
-        //   },
-        //   {
-        //     fjh: '1-0402',
-        //     fwxz: 1,
-        //     fwxzmc: '动迁房',
-        //     type: 2
-        //   },
-        //   {
-        //     fjh: '1-0403',
-        //     fwxz: 1,
-        //     fwxzmc: '动迁房',
-        //     type: 2
-        //   },
-        //   {
-        //     fjh: '1-0404',
-        //     fwxz: 0,
-        //     fwxzmc: '市场化商品房',
-        //     type: 1
-        //   }
-        // ]
+        hu: [
+          {
+            fjh: '1-0401',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            type: 3,
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '1-0402',
+            fwxz: 1,
+            fwxzmc: '动迁房',
+            type: 2,
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '1-0403',
+            fwxz: 1,
+            fwxzmc: '动迁房',
+            type: 2,
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '1-0404',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            type: 1,
+            colSpan: 1,
+            rowSpan: 1,
+          }
+        ]
       },
       {
         sjc: 3,
@@ -93,25 +101,33 @@ export const lpxxList = [
             fjh: '1-0301',
             fwxz: 2,
             fwxzmc: '配套商品房',
-            type: 0
+            type: 0,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '1-0302',
             fwxz: 2,
             fwxzmc: '配套商品房',
-            type: 1
+            type: 1,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '1-0303',
             fwxz: 4,
             fwxzmc: '廉租住房',
-            type: 1
+            type: 1,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '1-0304',
             fwxz: 4,
             fwxzmc: '廉租住房',
-            type: 2
+            type: 2,
+            colSpan: 1,
+            rowSpan: 1,
           }
         ]
       },
@@ -123,25 +139,33 @@ export const lpxxList = [
             fjh: '1-0201',
             fwxz: 0,
             fwxzmc: '市场化商品房',
-            type: 3
+            type: 3,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '1-0202',
             fwxz: 1,
             fwxzmc: '动迁房',
-            type: 3
+            type: 3,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '1-0203',
             fwxz: 1,
             fwxzmc: '动迁房',
-            type: 3
+            type: 3,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '1-0204',
             fwxz: 0,
             fwxzmc: '市场化商品房',
-            type: 1
+            type: 1,
+            colSpan: 1,
+            rowSpan: 1,
           }
         ]
       },
@@ -153,25 +177,33 @@ export const lpxxList = [
             fjh: '1-0101',
             fwxz: 2,
             fwxzmc: '配套商品房',
-            type: 0
+            type: 0,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '1-0102',
             fwxz: 2,
             fwxzmc: '配套商品房',
-            type: 0
+            type: 0,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '1-0103',
             fwxz: 4,
             fwxzmc: '廉租住房',
-            type: 0
+            type: 0,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '1-0104',
             fwxz: 4,
             fwxzmc: '廉租住房',
-            type: 2
+            type: 2,
+            colSpan: 1,
+            rowSpan: 1,
           }
         ]
       }
@@ -188,25 +220,33 @@ export const lpxxList = [
             fjh: '2-0401',
             fwxz: 0,
             fwxzmc: '市场化商品房',
-            type: 0
+            type: 0,
+            colSpan: 3,
+            rowSpan: 1,
           },
           {
             fjh: '2-0402',
             fwxz: 1,
             fwxzmc: '动迁房',
-            type: 1
+            type: 1,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '2-0403',
             fwxz: 1,
             fwxzmc: '动迁房',
-            type: 1
+            type: 1,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '2-0404',
             fwxz: 0,
             fwxzmc: '市场化商品房',
-            type: 2
+            type: 2,
+            colSpan: 1,
+            rowSpan: 1,
           }
         ]
       },
@@ -218,25 +258,33 @@ export const lpxxList = [
             fjh: '2-0301',
             fwxz: 2,
             fwxzmc: '配套商品房',
-            type: 3
+            type: 3,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '2-0302',
             fwxz: 2,
             fwxzmc: '配套商品房',
-            type: 3
+            type: 3,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '2-0303',
             fwxz: 4,
             fwxzmc: '廉租住房',
-            type: 1
+            type: 1,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '2-0304',
             fwxz: 4,
             fwxzmc: '廉租住房',
-            type: 0
+            type: 0,
+            colSpan: 1,
+            rowSpan: 1,
           }
         ]
       },
@@ -248,25 +296,33 @@ export const lpxxList = [
             fjh: '2-0201',
             fwxz: 0,
             fwxzmc: '市场化商品房',
-            type: 3
+            type: 3,
+            colSpan: 1,
+            rowSpan: 1
           },
           {
             fjh: '2-0202',
             fwxz: 0,
             fwxzmc: '市场化商品房',
-            type: 3
+            type: 3,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '2-0203',
             fwxz: 1,
             fwxzmc: '动迁房',
-            type: 1
+            type: 1,
+            colSpan: 2,
+            rowSpan: 1,
           },
           {
             fjh: '2-0204',
             fwxz: 1,
             fwxzmc: '动迁房',
-            type: 2
+            type: 2,
+            colSpan: 1,
+            rowSpan: 1,
           }
         ]
       },
@@ -278,28 +334,284 @@ export const lpxxList = [
             fjh: '2-0101',
             fwxz: 4,
             fwxzmc: '廉租住房',
-            type: 3
+            type: 3,
+            colSpan: 1,
+            rowSpan: 3,
           },
           {
             fjh: '2-0102',
             fwxz: 4,
             fwxzmc: '廉租住房',
-            type: 3
+            type: 3,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '2-0103',
             fwxz: 2,
             fwxzmc: '配套商品房',
-            type: 1
+            type: 1,
+            colSpan: 1,
+            rowSpan: 1,
           },
           {
             fjh: '2-0104',
             fwxz: 2,
             fwxzmc: '配套商品房',
-            type: 1
+            type: 1,
+            colSpan: 1,
+            rowSpan: 1,
           }
         ]
       }
     ]
   }
+]
+
+export const testlpxxList = [
+  {
+    dy: '一单元',
+    ceng: [
+      {
+        sjc: 6,
+        ch: '六层',
+        hu: [
+          {
+            fjh: '601',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '602',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          }
+        ]
+      },
+      {
+        sjc: 5,
+        ch: '五层',
+        hu: [
+          {
+            fjh: '501',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '502',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          }
+        ]
+      },
+      {
+        sjc: 4,
+        ch: '四层',
+        hu: [
+          {
+            fjh: '401',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '402',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          }]
+      },
+      {
+        sjc: 3,
+        ch: '三层',
+        hu: [
+          {
+            fjh: '301',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '302',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          }]
+      },
+      {
+        sjc: 2,
+        ch: '二层',
+        hu: [
+          {
+            fjh: '201',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '202',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          }]
+      },
+      {
+        sjc: 1,
+        ch: '一层',
+        hu: [
+          {
+            fjh: '101',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '102',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          }]
+      }]
+  },
+  {
+    dy: '二单元',
+    ceng: [
+      {
+        sjc: 6,
+        ch: '六层',
+        hu: [
+          {
+            fjh: '601',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '602',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          }]
+      },
+      {
+        sjc: 5,
+        ch: '五层',
+        hu: [
+          {
+            fjh: '501',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '502',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          }
+        ]
+      },
+      {
+        sjc: 4,
+        ch: '四层',
+        hu: [
+          {
+            fjh: '401',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '402',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          }
+        ]
+      },
+      {
+        sjc: 3,
+        ch: '三层',
+        hu: [
+          {
+            fjh: '301',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '302',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          }
+        ]
+      },
+      {
+
+        sjc: 2,
+        ch: '二层',
+        hu: [
+          {
+            fjh: '201',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '202',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          }
+        ]
+      },
+      {
+        sjc: 1,
+        ch: '一层',
+        hu: [
+          {
+            fjh: '101',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 1,
+          },
+          {
+            fjh: '102',
+            fwxz: 0,
+            fwxzmc: '市场化商品房',
+            colSpan: 1,
+            rowSpan: 3,
+          }
+        ]
+      }
+    ]
+  },
 ]

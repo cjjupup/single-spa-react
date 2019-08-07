@@ -1,5 +1,5 @@
 "use strict";
-import * as singleSpa from 'single-spa'; 
+import * as singleSpa from 'single-spa'
 import '../libs/system'
 import { registerApp } from './Register'
 
@@ -15,7 +15,7 @@ async function bootstrap() {
             path: element.path
         });
     });
-    window.singleSpa = singleSpa;
+    // window.singleSpa = singleSpa;
     singleSpa.start();
     setTimeout(() => {
         checkStatus(projectConfig.projects[0].name)
@@ -31,7 +31,7 @@ function checkStatus(baseModuleName) {
     } else {
         setTimeout(() => {
             checkStatus(baseModuleName)
-        }, 500)
+        }, 250)
     }
 }
 

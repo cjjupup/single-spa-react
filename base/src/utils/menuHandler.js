@@ -1,4 +1,6 @@
 import asyncComponent from 'Common/asyncComponent'
+import Loadable from 'react-loadable'
+import { Spin } from 'antd'
 
 /**
  * 该文件主要做菜单分离出来 具体开发时  根据业务场景  自行修改
@@ -13,10 +15,15 @@ export const divisionMenuList = menuList => {
   return menuData
 }
 
-function viewHandler(oripath = '', path, component, routerConfig) {
+function viewHandler (oripath = '', path, component, routerConfig) {
+  component = component.slice(1)
   routerConfig[oripath + path] = {
-    component: asyncComponent(() => import(`../pages${component}`))
-    // component: asyncComponent(() => import('' + component))
+    component: Loadable({
+      loader: () => import(`../pages/${component}`),
+      // loader: () => import(/* webpackMode: "eager" */`../pages/${component}`),
+      loading: Spin,
+    })
+    // component: asyncComponent(() => import(`../pages${component}`))
   }
 }
 

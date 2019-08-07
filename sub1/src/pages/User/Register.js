@@ -78,9 +78,7 @@ export default class Register extends Component {
 
   handleConfirmBlur = e => {
     const { value } = e.target
-    this.setState({
-      confirmDirty: prevState => ({ confirmDirty: prevState.confirmDirty || !!value })
-    })
+    this.setState(prevState => ({ confirmDirty: prevState.confirmDirty || !!value }))
   };
 
   checkConfirm = (rule, value, callback) => {

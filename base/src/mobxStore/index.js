@@ -1,13 +1,11 @@
 
-import userStore from './userStore'
-import controlStore from './controlStore'
 import cacheRouter from './cacheRouter'
+import localeStore from './localeStore'
 
 class RootStore {
   constructor () {
-    this.userStore = userStore
-    this.controlStore = controlStore
     this.cacheRouter = cacheRouter
+    this.localeStore = localeStore
   }
 }
 

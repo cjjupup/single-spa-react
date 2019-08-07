@@ -6,13 +6,6 @@ import { get } from 'Util/request'
 class Store {
   @observable menuList = []
   @observable permissionList = []
-  @observable langConfig={
-    locale: 'zh'
-  }
-
-  @action.bound changeLang=(param = '') => {
-    this.langConfig.locale = param
-  }
 
   // 获取菜单信息
   @action.bound getMenuList = async (params = {}) => {

@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 // import singleSpaReact from 'single-spa-react'
-import './runtime'
+// import './runtime'
 import registerServiceWorker from './registerServiceWorker'
 import RootComponent from './root.component'
 import { RootStore, history } from './Store'
+// import { history } from './utils/history'
 import './index.less'
 
 console.log(process.env)
@@ -14,7 +15,7 @@ if (process.env.ENV_TYPE !== 'micro') {
     <RootComponent
       history={history}
       store={RootStore}
-      globalEventDistributor={{ stores: { ...RootStore }}}
+      globalStore={RootStore}
     />, document.getElementById('root')
   )
 }
@@ -37,9 +38,9 @@ export function bootstrap(props) {
     .then(() => {
       ReactDOM.render(
         <RootComponent
-          history={props.customProps.storeModule.history}
-          store={props.customProps.storeModule.RootStore}
-          globalEventDistributor={props.customProps.globalEventDistributor}
+          history={props.customProps.globalStore.history}
+          store={props.customProps.RootStore}
+          globalStore={props.customProps.globalStore}
         />,
         document.getElementById('root')
       )

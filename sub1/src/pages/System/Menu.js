@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Input, Button, Divider } from 'antd'
 import { observer, inject } from 'mobx-react'
 
-@inject('globalStore')
 @observer
 export default class MenuPage extends Component {
   closeJumpFunc = () => {
@@ -57,7 +56,6 @@ export default class MenuPage extends Component {
     })
   }
   render() {
-    // const UserPage = this.props.globalStore.common.UserPage
     return (
       <div className='menu-page'>
         子系统 菜单管理页面

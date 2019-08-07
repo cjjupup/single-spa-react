@@ -2,7 +2,7 @@ require('es6-promise').polyfill();
 import * as singleSpa from 'single-spa';
 import { GlobalEventDistributor } from './GlobalEventDistributor' 
 import _ from 'loadsh'
-const globalEventDistributor = new GlobalEventDistributor();
+const globalStore = new GlobalEventDistributor();
 
 // hash 模式
 export function hashPrefix(app) {
@@ -52,33 +52,33 @@ function isNotEmptyObj (obj) {
 }
 export async function registerApp(params) {
     // 导入store模块
-    let storeModule = {}, customProps = { globalEventDistributor: globalEventDistributor };
+    let storeModule = {}, customProps = {};
     // 尝试导入store
     try {
         storeModule = params.store ? await SystemJS.import(params.store) : {};
-        window.TESTSTORE = storeModule
     } catch (e) {
         console.log(`Could not load store of app ${params.name}.`, e);
         //如果失败则不注册该模块
         // return
     }
     // 注册应用于事件派发器
-    if (isNotEmptyObj(storeModule) && globalEventDistributor) {
-        //取出 storeInstance
-        customProps.storeModule = storeModule;
-
+    if (isNotEmptyObj(storeModule) && globalStore) {
+        // 读取主模块histroy 挂载至globalStore
+        if (storeModule.history) globalStore.history = storeModule.history;
+        customProps.RootStore = storeModule.RootStore;
         // 注册到全局
-        globalEventDistributor.registerStore({ module: _.camelCase(params.name), store: storeModule.RootStore });
+        globalStore.registerStore({ module: _.camelCase(params.name), store: storeModule.RootStore });
+        customProps.globalStore = globalStore
+        
     }
-
     //准备自定义的props,传入每一个单独工程项目
-    customProps = { storeModule: storeModule, globalEventDistributor: globalEventDistributor };
+    // customProps = { storeModule: storeModule, globalEventDistributor: globalEventDistributor };
     singleSpa.registerApplication(
         params.name,
-        () => SystemJS.import(params.main),
+        async () => await SystemJS.import(params.main),
         params.base ? (() => true) : pathPrefix(params),
         customProps
-    );
+    )
 }
 
 function isArray(o){

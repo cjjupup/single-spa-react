@@ -25,28 +25,42 @@ export default class RootComponent extends React.Component {
   }
   render() {
     // 将主模块路由history植入全局  子模块路由拉取
-    this.props.globalEventDistributor.history = this.props.history
-    window.baseHistory = this.props.history
-    // console.log(this.props)
-    let globalStore = this.props.globalEventDistributor.stores
+    // this.props.globalStore.history = this.props.history
+    let { globalStore, history } = this.props
+    window.baseHistory = history
     window.baseGlobalStore = globalStore
     // 从全局配置获取主模块的语言
-    let locale = globalStore.shineyueProBase
-      ? globalStore.shineyueProBase.controlStore.langConfig.locale
-      : this.props.store.controlStore.langConfig.locale
+    let locale = globalStore.stores
+      ? globalStore.stores.baseModule.localeStore.langConfig.locale
+      : this.props.store.localeStore.langConfig.locale
     let ret = <div></div>
-    if (this.props.globalEventDistributor && this.props.history) {
+    if (this.props.globalStore && this.props.history) {
       ret = (
         <Provider rootStore={this.props.store} globalStore={globalStore}>
           <Router history={this.props.history}>
             <Switch>
               <Route path='/user' render={props => <UserLayout {...props} />} />
-              <PrivateRoute path='/' {...this.props} component={BasicLayout} globalEventDistributor={this.props.globalEventDistributor} />
+              <PrivateRoute
+                path='/'
+                {...this.props}
+                component={BasicLayout}
+              />
             </Switch>
           </Router>
         </Provider>
       )
     }
-    return <IntlProvider locale={locale} messages={langMap[locale]}><LocaleProvider local={locale === 'zh' ? zhCNAnt : enUSAnt}>{ret}</LocaleProvider></IntlProvider>
+    return (
+      <IntlProvider
+        locale={locale}
+        messages={langMap[locale]}
+      >
+        <LocaleProvider
+          local={locale === 'zh' ? zhCNAnt : enUSAnt}
+        >
+          {ret}
+        </LocaleProvider>
+      </IntlProvider>
+    )
   }
 }

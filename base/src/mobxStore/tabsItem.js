@@ -78,7 +78,6 @@ class Store {
       this.updateCurActiveTab(preItem.path, preItem.state)
     }
     tabItems.splice(targetIndex, 1)
-    console.log('准备清除路由缓存： ', tabPath)
     this.updateWaitingRemove({
       status: true,
       pathname: tabPath
@@ -89,13 +88,25 @@ class Store {
   }
 
   /**
-   * 关闭所有tab 未完善
+   * 关闭除主页外所有tab 完善中 2019/8/7
    */
   @action closeAllTabs = () => {
-    this.tabItems = []
-    this.tabItems.sclice().push(this.basicItem)
+    let alltabs = this.tabItems.slice()
+    // 激活主页tab
+    this.updateCurActiveTab('/')
+    // 更新tabs 只保留 主页tab
+    this.tabItems = alltabs.slice(0, 1)
+    // 保存tabs
     this.saveTabItemsSS()
+    // 初始化滚动栏判断
     this.initScrollOver()
+  }
+
+  /**
+   * 关闭除指定页及主页外所有tab 完善中 2019/8/7
+   */
+  @action closeAllOtherTabs = pathName => {
+
   }
 
   /**

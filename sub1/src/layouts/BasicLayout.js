@@ -9,7 +9,6 @@ import SiderMenu from 'Components/SiderMenu/'
 import GlobalHeader from 'Components/GlobalHeader'
 import TabsBar from 'Components/TabsBar'
 import { enquireScreen, unenquireScreen } from 'enquire-js'
-import { observable } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import logo from '../assets/logo.png'
 import WelCome from '../pages/Welcome'
@@ -64,6 +63,10 @@ export default class BasicLayout extends Component {
     })
   }
   componentDidUpdate() {
+    /**
+     * 微服务模式下 页面关闭或者切换 所有模块都会在basiclayout内做一次更新
+     * 此时可以检测子模块路由缓存的清除
+     */
     if (process.env.ENV_TYPE === 'micro') {
       this.checkCacheRouter()
     }
@@ -75,16 +78,14 @@ export default class BasicLayout extends Component {
   getPageTitle() {
     const { routerData, location } = this.props
     const { pathname } = location
-    let title = '神玥子系统'
+    let title = conf.moduleInfo.name
     if (routerData[pathname] && routerData[pathname].name) {
-      title = `${routerData[pathname].name} - 神玥子系统`
+      title = `${routerData[pathname].name} - ${conf.moduleInfo.name}`
     }
     return title
   }
-  handleMenuCollapse = collapsed => {
-    this.setState({
-      collapsed: prevState => ({ collapsed: !prevState.collapsed })
-    })
+  handleMenuCollapse = () => {
+    this.setState(prevState => ({ collapsed: !prevState.collapsed }))
   }
 
   handleMenuClick = ({ key }) => {
@@ -100,31 +101,28 @@ export default class BasicLayout extends Component {
     }
   }
   checkCacheRouter () {
+    let { stores } = this.props.globalStore
     setTimeout(() => {
-      console.log('准备清除： ', this.props.globalStore[conf.name].cacheRouter.waitRemove.slice())
-      if (this.props.globalStore[conf.name].cacheRouter.waitRemove.slice().length === 0) {
-        console.log('新增缓存路由')
+      if (stores[conf.name].cacheRouter.waitRemove.slice().length === 0) {
         setTimeout(() => {
-          console.log('更新后sub1缓存路由： ', getCachingKeys())
+          console.log(`更新后-子模块${conf.name}-缓存路由： `, getCachingKeys())
           // 更新全局储存缓存
-          this.props.globalStore[conf.name].cacheRouter.updateCacheRouter(getCachingKeys())
+          stores[conf.name].cacheRouter.updateCacheRouter(getCachingKeys())
         }, 50)
       } else {
         // 删除缓存路由
-        console.log('删除缓存路由')
-        // 清除缓存
-        this.props.globalStore[conf.name].cacheRouter.waitRemove.slice().forEach(item => {
+        stores[conf.name].cacheRouter.waitRemove.slice().forEach(item => {
           dropByCacheKey(item)
         })
-        // 重置 CacheRouteStore.waitRemove
-        // 更新全局储存缓存
         setTimeout(() => {
-          this.props.globalStore[conf.name].cacheRouter.resetWaitRemove()
-          console.log('清除后sub1缓存路由： ', getCachingKeys())
-          this.props.globalStore[conf.name].cacheRouter.updateCacheRouter(getCachingKeys())
+          console.log(`清除后-子模块${conf.name}-缓存路由： `, getCachingKeys())
+          // 重置 CacheRouteStore.waitRemove
+          stores[conf.name].cacheRouter.resetWaitRemove()
+          // 更新全局储存缓存
+          stores[conf.name].cacheRouter.updateCacheRouter(getCachingKeys())
         }, 100)
       }
-    }, 1000)
+    }, 300)
   }
   render() {
     const {
@@ -133,7 +131,7 @@ export default class BasicLayout extends Component {
       routerData,
       match,
       location,
-      history,
+      history
     } = this.props
     const currentUser = {
       name: 'Serati Ma',

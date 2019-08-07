@@ -27,7 +27,7 @@ module.exports = {
     'PRO': true
   },
   rules: {
-    'shineyue/no-chinese-word': 2,
+    // 'shineyue/no-chinese-word': 2,
     /**
      *  Possible Errors
      *  这些规则与 JavaScript 代码中可能的错误或逻辑错误有关

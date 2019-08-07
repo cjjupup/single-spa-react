@@ -42,8 +42,7 @@ export default class TabsBar extends Component {
     }, 500))
   }
   componentWillReceiveProps(nextProps) {
-    console.log('to: ', nextProps.location.pathname)
-    console.log('from: ', this.props.location.pathname)
+    console.log(`to: ${nextProps.location.pathname}, from: ${this.props.location.pathname}`)
     if (nextProps.location.pathname !== this.props.location.pathname) {
       this.activeItem(nextProps.location.pathname)
     }
@@ -60,10 +59,8 @@ export default class TabsBar extends Component {
   }
   handleItemClick(e) {
     e = e || event
-    console.log(e)
     e && e.persist()
     let { nodeName } = e.srcElement ? e.srcElement : e.target
-    console.log(nodeName)
     if (nodeName !== 'SPAN') {
       let target
       if (nodeName === 'I') target = e.target.parentNode
@@ -83,8 +80,6 @@ export default class TabsBar extends Component {
       path,
       name
     })
-    // this.props.history.push(path)
-    // this.activeItem(path)
   }
   handleScrollBarLeft(e) {
     e && e.persist()
@@ -110,6 +105,9 @@ export default class TabsBar extends Component {
   }
   // 关闭某个tab
   itemClose(index) {
+    /**
+     * 由tab栏点击关闭页面 清除路由缓存
+     */
     let tabItems = tabItemStore.tabItems.slice()
     let isActive = tabItems[index].actived
     let pathName = tabItems[index].path
@@ -120,10 +118,8 @@ export default class TabsBar extends Component {
     tabItemStore.closeTab(pathName)
     // 清除缓存
     let curCacheRouters = getCachingKeys()
-    console.log('当前路由缓存: ', curCacheRouters)
     dropByCacheKey(pathName)
-    console.log('当前路由缓存: ', curCacheRouters)
-    if (curCacheRouters.indexOf(pathName) < 0) {
+    if (process.env.ENV_TYPE === 'micro' && curCacheRouters.indexOf(pathName) < 0) {
       // 非主模块缓存路由
       this.removeChildModuleCacheRouter(pathName)
     }
@@ -135,19 +131,15 @@ export default class TabsBar extends Component {
   // 清除子模块路由缓存
   removeChildModuleCacheRouter (pathName) {
     let target = pathName.split('/')[1]
-    if (this.props.globalStore[target]) {
-      this.props.globalStore[target].cacheRouter.removeCacheRouter(pathName)
-      this.props.globalStore[target].cacheRouter.setWaitRemove(pathName)
+    let { stores } = this.props.globalStore
+    if (stores[target] && stores[target].cacheRouter) {
+      stores[target].cacheRouter.removeCacheRouter(pathName)
+      stores[target].cacheRouter.setWaitRemove(pathName)
     }
   }
 
   render() {
-    console.log('tabscomponent: ', window.baseHistory.tabsStore)
     let tabItems = window.baseHistory.tabsStore.tabItems.slice()
-    setTimeout(() => {
-      console.log('当前tabs: ', tabItems)
-      console.log('tabscomponent: ', window.baseHistory.tabsStore)
-    }, 2000)
     const { isOver } = tabItemStore
     let items = []
     tabItems.forEach((item, index) => {

@@ -1,10 +1,20 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import { Divider, Button, Modal } from 'antd'
+import { Divider, Button, Modal, Tabs } from 'antd'
+import { StickyContainer, Sticky } from 'react-sticky'
 import DynamicComponent from 'Components/DynamicComponent/index'
 import SYUpLoad from 'Components/SYUpLoad/index'
 import { post } from 'Util/request'
 // import './Menu.less'
+
+const { TabPane } = Tabs
+const renderTabBar = (props, DefaultTabBar) => (
+  <Sticky bottomOffset={20}>
+    {({ style }) => (
+      <DefaultTabBar {...props} style={{ ...style, zIndex: 1, background: '#fff' }} />
+    )}
+  </Sticky>
+)
 
 @inject('globalStore')
 @observer
@@ -116,6 +126,28 @@ export default class ViewPage extends Component {
     }
     return (
       <div className='menu-page'>
+        <StickyContainer>
+          <Tabs defaultActiveKey='1' renderTabBar={renderTabBar}>
+            <TabPane tab='Tab 1' key='1' style={{ height: 200 }}>
+              Content of Tab Pane 1
+            </TabPane>
+            <TabPane tab='Tab 2' key='2'>
+              Content of Tab Pane 2
+            </TabPane>
+            <TabPane tab='Tab 3' key='3'>
+              Content of Tab Pane 3
+            </TabPane>
+          </Tabs>
+        </StickyContainer>
+        <Divider />
+        视图页面一级
+        <Divider />
+        视图页面一级
+        <Divider />
+        视图页面一级
+        <Divider />
+        视图页面一级
+        <Divider />
         视图页面一级
         <Button type='primary' onClick={this.showModal}>
           打开子模块的页面

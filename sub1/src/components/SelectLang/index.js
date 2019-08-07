@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-// import { formatMessage, setLocale, getLocale } from 'umi/locale'
 import { Menu, Icon } from 'antd'
 import classNames from 'classnames'
-import { injectIntl, FormattedMessage, FormattedDate, FormattedNumber } from 'react-intl'
+import { injectIntl } from 'react-intl'
 import { observer, inject } from 'mobx-react'
 import HeaderDropdown from '../HeaderDropdown'
 import styles from './index.less'
@@ -11,16 +10,11 @@ import styles from './index.less'
 @observer
 class SelectLang extends Component {
   render() {
-    const { className, intl: { formatMessage }} = this.props
-    // console.log(globalStore)
-    let controlStore = this.props.globalStore.shineyueProBase
-      ? this.props.globalStore.shineyueProBase.controlStore
-      : this.props.store.controlStore
-    let selectedLang = this.props.globalStore.shineyueProBase
-      ? this.props.globalStore.shineyueProBase.controlStore.langConfig.locale
-      : this.props.store.controlStore.langConfig.locale
-    // let selectedLang = controlStore.langConfig.locale
-    console.log(this.props)
+    const { className, intl: { formatMessage }, globalStore } = this.props
+    let localeStore = globalStore.stores
+      ? globalStore.stores.baseModule.localeStore
+      : this.props.store.localeStore
+    let selectedLang = localeStore.langConfig.locale
     const locales = ['zh', 'en']
     const languageLabels = {
       zh: '简体中文',
@@ -34,7 +28,7 @@ class SelectLang extends Component {
       <Menu className={styles.menu}
         selectedKeys={[selectedLang]}
         onClick={({ key }) => {
-          controlStore.changeLang(key)
+          localeStore.changeLang(key)
         }}
       >
         {locales.map(locale => (

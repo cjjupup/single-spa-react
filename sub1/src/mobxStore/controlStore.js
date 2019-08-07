@@ -1,18 +1,12 @@
 import { observable, configure, action, runInAction } from 'mobx'
 import API_PATH from 'Common/apiPath'
-import { get, post } from 'Util/request'
+import { get } from 'Util/request'
 
 // configure({ enforceActions: 'always', computedRequiresReaction: false })
 class Store {
   @observable menuList = []
   @observable permissionList = []
-  @observable langConfig={
-    locale: 'zh'
-  }
 
-  @action.bound changeLang=(param = '') => {
-    this.langConfig.locale = param
-  }
   // 获取菜单信息
   @action.bound getMenuList = async (params = {}) => {
     try {

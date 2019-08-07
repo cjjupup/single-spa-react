@@ -11,7 +11,7 @@ class Store {
     if (isNew) this.cacheRouters.push(pathName)
   }
 
-  // 清楚某个缓存路由
+  // 清除某个缓存路由
   @action.bound removeCacheRouter = pathName => {
     let cacheRouters = this.cacheRouters.slice()
     let index = cacheRouters.indexOf(pathName)

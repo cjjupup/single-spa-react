@@ -17,14 +17,14 @@ export default class PrivateRoute extends PureComponent {
       // 菜单路由尚未初始化
       let menuData = (menuList && divisionMenuList(menuList)) || []
       let routerConfig = (ownMenuList && divisionRouterList(ownMenuList)) || {}
-      let permissionList = (menuList && divisionPermissionList(menuList)) || []
+      // let permissionList = (menuList && divisionPermissionList(menuList)) || []
       console.log(menuData)
-      console.log(routerConfig)
+      // console.log(routerConfig)
       pushMenu(menuData)
       pushRouter(routerConfig)
       console.log('路由： ', routerConfig)
       // 菜单挂在全局
-      this.props.globalEventDistributor.allMenuList = menuList
+      this.props.globalStore.allMenuList = menuList
     }
     const { component: Component, ...rest } = this.props
     return (

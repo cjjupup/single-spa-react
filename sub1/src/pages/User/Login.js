@@ -9,7 +9,6 @@ import style from './Login.less'
 
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login
 
-// @inject('rootStore')
 @observer
 export default class LoginPage extends Component {
   handleSubmit = async (err, values) => {
@@ -22,10 +21,10 @@ export default class LoginPage extends Component {
         this.props.history.push('/')
       }
     }
-  };
+  }
   renderMessage = content => {
     return <Alert style={{ marginBottom: 24 }} message={content} type='error' showIcon />
-  };
+  }
 
   render() {
     return (

@@ -33,8 +33,7 @@ export default class TabsBar extends Component {
     }, 500))
   }
   componentWillReceiveProps(nextProps) {
-    console.log('to: ', nextProps.location.pathname)
-    console.log('from: ', this.props.location.pathname)
+    console.log(`to: ${nextProps.location.pathname}, from: ${this.props.location.pathname}`)
     if (nextProps.location.pathname !== this.props.location.pathname) {
       this.activeItem(nextProps.location.pathname)
     }

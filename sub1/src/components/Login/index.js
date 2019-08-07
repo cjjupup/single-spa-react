@@ -34,16 +34,12 @@ class Login extends Component {
     return {
       tabUtil: {
         addTab: id => {
-          this.setState({
-            // tabs: [...this.state.tabs, id],
-            tabs: prevState => ({ tabs: [...prevState.tabs, id] }),
-          })
+          this.setState(prevState => ({ tabs: [...prevState.tabs, id] }))
         },
         removeTab: id => {
-          this.setState({
-            // tabs: this.state.tabs.filter(currentId => currentId !== id),
-            tabs: prevState => ({ tabs: prevState.tabs.filter(currentId => currentId !== id) }),
-          })
+          this.setState(prevState => ({
+            tabs: prevState.tabs.filter(currentId => currentId !== id)
+          }))
         },
       },
       form: this.props.form,

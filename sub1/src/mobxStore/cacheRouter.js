@@ -1,6 +1,5 @@
-import { observable, configure, action, runInAction } from 'mobx'
-import { dropByCacheKey } from 'react-router-cache-route'
-// configure({ enforceActions: 'always', computedRequiresReaction: false })
+import { observable, action } from 'mobx'
+
 class Store {
   @observable cacheRouters = []
   @observable waitRemove = []
@@ -11,13 +10,12 @@ class Store {
     if (isNew) this.cacheRouters.push(pathName)
   }
 
-  // 清楚某个缓存路由
+  // 清除某个缓存路由
   @action.bound removeCacheRouter = pathName => {
     let cacheRouters = this.cacheRouters.slice()
     let index = cacheRouters.indexOf(pathName)
     let hasItem = index > -1
     if (!hasItem) return
-    // this.setWaitRemove(pathName)
     cacheRouters.splice(index, 1)
     this.cacheRouters = cacheRouters
   }
